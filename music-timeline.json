@@ -1,0 +1,52 @@
+{
+  "fps": 60,
+  "duration": 280,
+
+  "intro": {
+    "titleIn":   0.3,
+    "subtitleIn": 1.1,
+    "holdEnd":   4.0,
+    "fadeOut":   5.5
+  },
+
+  "s1": {
+    "start":  6.0,
+    "word1":  6.2,
+    "word2":  6.6,
+    "word3":  7.1,
+    "bars":   8.0,
+    "exit":  38.0
+  },
+
+  "s2": {
+    "start":  38.5,
+    "grid1":  39.0,
+    "grid2":  39.6,
+    "grid3":  40.2,
+    "pulse":  44.0,
+    "exit":  100.0
+  },
+
+  "s3": {
+    "start":  100.5,
+    "rings":  101.0,
+    "text1":  104.0,
+    "text2":  108.0,
+    "exit":   170.0
+  },
+
+  "s4": {
+    "start":  170.5,
+    "line1":  171.0,
+    "line2":  172.0,
+    "particles": 174.0,
+    "exit":   240.0
+  },
+
+  "outro": {
+    "start":  240.5,
+    "titleIn": 241.0,
+    "fadeOut": 270.0,
+    "end":    280.0
+  }
+}

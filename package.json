@@ -18,7 +18,10 @@
     "typecheck": "tsc",
     "test:sims": "node --test sims/kit/runtime.test.mjs",
     "sims": "node sims/build.mjs",
-    "capture": "node sims/capture.mjs"
+    "capture": "node sims/capture.mjs",
+    "music:draft": "remotion render MusicVideo out/music-draft.mp4 --scale=0.5 --crf=28",
+    "music:render": "remotion render MusicVideo out/music-video.mp4",
+    "music:sheet": "node scripts/sheet.mjs --video out/music-draft.mp4 --every 10 --cols 4"
   },
   "dependencies": {
     "@fontsource-variable/inter": "5.3.0",
