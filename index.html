@@ -3,141 +3,250 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DOSMotionEdit | Web Video & Motion Studio</title>
+  <title>DOSMotionEdit | Professional Motion Graphics & Video Editing Suite</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #111110;
+      --bg-alt: #161514;
       --panel: #1a1918;
       --panel-dark: #141312;
       --panel-border: rgba(240, 238, 230, 0.08);
       --cream: #f0eee6;
       --cream-dim: rgba(240, 238, 230, 0.65);
-      --muted: rgba(240, 238, 230, 0.35);
+      --muted: rgba(240, 238, 230, 0.4);
       --coral: #d97757;
       --coral-hi: #ee9b79;
-      --timeline-bg: #161514;
-      --track-bg: #21201d;
+      --green: #7ae4b8;
+      --radius: 12px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--cream);
-      font-family: 'Inter', sans-serif;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      user-select: none;
+      font-family: 'Inter', -apple-system, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
     }
 
-    /* Top Navigation */
-    header {
-      height: 48px;
+    /* ─── NAVIGATION BAR ─── */
+    nav.navbar {
+      height: 64px;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: rgba(17, 17, 16, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--panel-border);
+      z-index: 1000;
+    }
+    .nav-brand {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 28px;
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-brand span { color: var(--coral); font-style: italic; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      color: var(--cream-dim);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-btn {
+      background: var(--coral);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-btn:hover { background: var(--coral-hi); transform: translateY(-1px); }
+
+    /* ─── HERO SECTION ─── */
+    .hero {
+      position: relative;
+      padding: 100px 32px 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(217, 119, 87, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--coral);
+      background: rgba(217, 119, 87, 0.1);
+      border: 1px solid rgba(217, 119, 87, 0.25);
+      padding: 6px 14px;
+      border-radius: 30px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      position: relative;
+    }
+    .hero-badge .ping {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--coral);
+      box-shadow: 0 0 10px var(--coral);
+    }
+    .hero h1 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(52px, 7.5vw, 96px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      max-width: 980px;
+      margin: 0 auto 24px;
+      position: relative;
+    }
+    .hero h1 em {
+      color: var(--coral);
+      font-style: italic;
+    }
+    .hero-sub {
+      font-size: clamp(17px, 2vw, 21px);
+      color: var(--cream-dim);
+      max-width: 760px;
+      margin: 0 auto 36px;
+      font-weight: 400;
+      line-height: 1.5;
+      position: relative;
+    }
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 60px;
+      position: relative;
+      flex-wrap: wrap;
+    }
+    .btn-main {
+      background: var(--coral);
+      color: white;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.2s;
+      box-shadow: 0 10px 30px rgba(217, 119, 87, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-main:hover { background: var(--coral-hi); transform: translateY(-2px); }
+    .btn-ghost {
+      background: var(--panel);
+      color: var(--cream);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      border: 1px solid var(--panel-border);
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: #262523; border-color: rgba(240, 238, 230, 0.2); }
+
+    /* ─── LIVE APP EMBED WORKSPACE (STUDIO ENGINE) ─── */
+    .app-section {
+      max-width: 1380px;
+      margin: 0 auto 100px;
+      padding: 0 24px;
+    }
+    .studio-frame {
       background: var(--panel-dark);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+    }
+    .studio-topbar {
+      height: 44px;
+      background: #171615;
       border-bottom: 1px solid var(--panel-border);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 16px;
-      flex-shrink: 0;
     }
-    .brand {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 22px;
-      letter-spacing: -0.01em;
+    .window-dots {
       display: flex;
-      align-items: center;
       gap: 8px;
     }
-    .brand span { color: var(--coral); font-style: italic; }
-    .header-center {
+    .w-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: rgba(240, 238, 230, 0.2);
+    }
+    .w-dot.red { background: #ff5f56; }
+    .w-dot.yellow { background: #ffbd2e; }
+    .w-dot.green { background: #27c93f; }
+    .studio-title {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
-      letter-spacing: 0.1em;
       color: var(--muted);
-      background: rgba(240, 238, 230, 0.04);
-      padding: 4px 12px;
-      border-radius: 4px;
-      border: 1px solid var(--panel-border);
+      letter-spacing: 0.08em;
     }
-    .header-actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    .action-btn {
-      background: var(--panel);
-      color: var(--cream);
-      border: 1px solid var(--panel-border);
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.15s;
-    }
-    .action-btn:hover { background: #262523; border-color: rgba(240, 238, 230, 0.2); }
-    .action-btn.primary { background: var(--coral); color: #fff; border-color: var(--coral); }
-    .action-btn.primary:hover { background: var(--coral-hi); }
 
-    /* Main Workspace */
-    .workspace {
-      flex: 1;
+    /* Studio Layout */
+    .studio-workspace {
       display: grid;
-      grid-template-columns: 280px 1fr 300px;
-      overflow: hidden;
+      grid-template-columns: 280px 1fr 290px;
+      min-height: 520px;
     }
 
-    /* Left Sidebar: Assets & Presets */
-    .sidebar {
-      background: var(--panel-dark);
+    /* Left Sidebar: Themes */
+    .studio-sidebar {
+      background: #141312;
       border-right: 1px solid var(--panel-border);
+      padding: 18px 14px;
       display: flex;
       flex-direction: column;
+      gap: 12px;
     }
-    .sidebar-tabs {
-      display: flex;
-      border-bottom: 1px solid var(--panel-border);
-    }
-    .sidebar-tab {
-      flex: 1;
-      padding: 10px;
-      text-align: center;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--muted);
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-    }
-    .sidebar-tab.active {
-      color: var(--coral);
-      border-bottom-color: var(--coral);
-      background: rgba(217, 119, 87, 0.05);
-    }
-    .sidebar-content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .section-title {
+    .sec-label {
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--muted);
-      font-family: 'JetBrains Mono', monospace;
-      margin-bottom: 8px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
     }
-    .preset-card {
+    .theme-card {
       background: var(--panel);
       border: 1px solid var(--panel-border);
       border-radius: 8px;
@@ -145,118 +254,93 @@
       cursor: pointer;
       transition: all 0.15s;
     }
-    .preset-card:hover { border-color: var(--coral); transform: translateY(-1px); }
-    .preset-card.active { border-color: var(--coral); background: rgba(217, 119, 87, 0.08); }
-    .preset-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-    .preset-desc { font-size: 11px; color: var(--cream-dim); line-height: 1.4; }
+    .theme-card:hover { border-color: var(--coral); transform: translateY(-1px); }
+    .theme-card.active { border-color: var(--coral); background: rgba(217, 119, 87, 0.08); }
+    .theme-title { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+    .theme-desc { font-size: 11px; color: var(--cream-dim); line-height: 1.35; }
 
-    /* Center Stage: Video Canvas & Controls */
-    .stage {
-      background: #090908;
+    /* Center Stage Canvas */
+    .studio-stage {
+      background: #0a0a09;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: relative;
       padding: 24px;
-      overflow: hidden;
-    }
-    .canvas-container {
       position: relative;
-      width: min(540px, 85%);
+    }
+    .stage-canvas-box {
+      width: min(440px, 90%);
       aspect-ratio: 1 / 1;
       background: #141413;
-      border-radius: 8px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--panel-border);
+      border-radius: 10px;
       overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--panel-border);
+      position: relative;
     }
     #renderCanvas {
       width: 100%;
       height: 100%;
       display: block;
     }
-    .stage-hud {
-      position: absolute;
-      top: 16px;
-      left: 20px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      display: flex;
-      gap: 16px;
-    }
 
     /* Right Inspector */
-    .inspector {
-      background: var(--panel-dark);
+    .studio-inspector {
+      background: #141312;
       border-left: 1px solid var(--panel-border);
+      padding: 18px 16px;
       display: flex;
       flex-direction: column;
-      padding: 16px;
+      gap: 18px;
       overflow-y: auto;
-      gap: 20px;
     }
-    .prop-group {
+    .field-row {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-    }
-    .prop-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      gap: 6px;
       font-size: 12px;
+    }
+    .field-label {
       color: var(--cream-dim);
+      font-size: 11px;
+      font-weight: 500;
     }
-    .prop-row input[type="text"] {
-      width: 140px;
+    .field-row input[type="text"], .field-row select {
       background: var(--panel);
       border: 1px solid var(--panel-border);
       color: var(--cream);
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-family: 'Inter', sans-serif;
+      padding: 6px 10px;
+      border-radius: 6px;
       font-size: 12px;
     }
-    .prop-row input[type="range"] {
-      width: 120px;
+    .field-row input[type="range"] {
       accent-color: var(--coral);
-    }
-    .prop-row select {
-      background: var(--panel);
-      border: 1px solid var(--panel-border);
-      color: var(--cream);
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 12px;
     }
 
     /* Bottom Timeline */
-    .timeline-panel {
-      height: 230px;
-      background: var(--timeline-bg);
+    .studio-timeline {
+      background: var(--bg-alt);
       border-top: 1px solid var(--panel-border);
       display: flex;
       flex-direction: column;
-      flex-shrink: 0;
     }
-    .timeline-toolbar {
+    .tl-header {
       height: 44px;
-      background: var(--panel);
+      background: #191817;
       border-bottom: 1px solid var(--panel-border);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 16px;
     }
-    .play-controls {
+    .tl-controls {
       display: flex;
       align-items: center;
       gap: 12px;
     }
-    .play-btn {
-      width: 32px;
-      height: 32px;
+    .play-circle {
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       background: var(--coral);
       border: none;
@@ -265,60 +349,53 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
-    }
-    .play-btn:hover { background: var(--coral-hi); }
-    .timecode {
-      font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
+    }
+    .play-circle:hover { background: var(--coral-hi); }
+    .tl-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
       color: var(--cream);
-      margin-left: 8px;
     }
-
-    /* Timeline Tracks & Scrubber */
-    .timeline-workspace {
-      flex: 1;
+    .tl-body {
       display: flex;
-      position: relative;
+      height: 135px;
       overflow-x: auto;
-      overflow-y: hidden;
+      position: relative;
     }
-    .track-labels {
-      width: 110px;
-      background: var(--panel-dark);
+    .tl-headers {
+      width: 100px;
+      background: #141312;
       border-right: 1px solid var(--panel-border);
-      display: flex;
-      flex-direction: column;
       flex-shrink: 0;
       z-index: 10;
     }
-    .track-label {
+    .tl-head-row {
       height: 44px;
+      border-bottom: 1px solid var(--panel-border);
       display: flex;
       align-items: center;
-      padding: 0 12px;
-      font-size: 11px;
-      color: var(--muted);
-      border-bottom: 1px solid var(--panel-border);
+      padding: 0 10px;
       font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
+      font-size: 10px;
+      color: var(--muted);
     }
-    .track-lanes {
+    .tl-lanes {
       flex: 1;
+      min-width: 1400px;
       position: relative;
-      min-width: 1600px;
       background-size: 40px 100%;
       background-image: linear-gradient(to right, rgba(240, 238, 230, 0.03) 1px, transparent 1px);
     }
-    .track-lane {
+    .tl-lane-row {
       height: 44px;
       border-bottom: 1px solid var(--panel-border);
       position: relative;
       display: flex;
       align-items: center;
-      padding: 0 8px;
+      padding: 0 6px;
     }
-    .clip {
+    .tl-clip {
       position: absolute;
       height: 32px;
       border-radius: 6px;
@@ -327,24 +404,21 @@
       padding: 0 10px;
       font-size: 11px;
       font-weight: 600;
-      cursor: grab;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
-    .clip-video { background: #2f2a28; color: var(--coral-hi); border-color: rgba(217, 119, 87, 0.4); }
-    .clip-audio { background: #1c2a26; color: #7ae4b8; border-color: rgba(122, 228, 184, 0.3); }
-    .clip-fx { background: #2a2136; color: #c4a1f5; border-color: rgba(196, 161, 245, 0.3); }
-
-    /* Red Playhead */
-    .playhead {
+    .clip-v { background: #2f2a28; color: var(--coral-hi); border-color: rgba(217, 119, 87, 0.4); }
+    .clip-a { background: #1c2a26; color: var(--green); border-color: rgba(122, 228, 184, 0.3); }
+    .clip-f { background: #2a2136; color: #c4a1f5; border-color: rgba(196, 161, 245, 0.3); }
+    .tl-playhead {
       position: absolute;
       top: 0;
       bottom: 0;
       width: 2px;
       background: var(--coral);
       pointer-events: none;
-      z-index: 20;
+      z-index: 50;
     }
-    .playhead-head {
+    .tl-playhead-cap {
       width: 10px;
       height: 10px;
       background: var(--coral);
@@ -353,159 +427,356 @@
       left: -4px;
       transform: rotate(45deg);
     }
+
+    /* ─── ABOUT / ARCHITECTURE SECTION ─── */
+    .about-section {
+      max-width: 1100px;
+      margin: 0 auto 120px;
+      padding: 0 24px;
+    }
+    .about-head {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .about-head h2 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 46px;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .about-head p {
+      color: var(--cream-dim);
+      font-size: 17px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    .feat-card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .feat-card:hover { transform: translateY(-4px); border-color: var(--coral); }
+    .feat-icon {
+      font-size: 26px;
+      color: var(--coral);
+      margin-bottom: 16px;
+    }
+    .feat-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .feat-card p {
+      color: var(--cream-dim);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Architecture breakdown */
+    .arch-box {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius);
+      padding: 36px;
+    }
+    .arch-box h3 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    .arch-code {
+      background: #111110;
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--cream-dim);
+      overflow-x: auto;
+      line-height: 1.7;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--panel-border);
+      padding: 60px 40px 40px;
+      text-align: center;
+      background: #0d0c0c;
+    }
+    .footer-brand {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .footer-brand span { color: var(--coral); font-style: italic; }
+    .footer-desc {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 500px;
+      margin: 0 auto 24px;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+    .footer-links a { color: var(--cream-dim); text-decoration: none; }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
 
-  <!-- Top bar -->
-  <header>
-    <div class="brand">DOSMotion<span>Edit</span></div>
-    <div class="header-center">1080 × 1080 · 60 FPS · TASTE-ENGINE ACTIVE</div>
-    <div class="header-actions">
-      <label class="action-btn">
-        <span>Upload Audio</span>
-        <input type="file" id="audioInput" accept="audio/*" style="display:none;">
-      </label>
-      <button class="action-btn primary" id="exportBtn">Export Canvas</button>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="#" class="nav-brand">DOSMotion<span>Edit</span></a>
+    <div class="nav-links">
+      <a href="#studio">Web Studio</a>
+      <a href="#about">About Software</a>
+      <a href="#architecture">Architecture</a>
+      <a href="https://github.com/Dikshu143644/DOSMotionEdit" target="_blank" class="nav-btn">GitHub</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-badge">
+      <span class="ping"></span>
+      Web Studio & Remotion Engine Live
+    </div>
+    <h1>The code-driven motion studio for <em>creative thinkers</em>.</h1>
+    <p class="hero-sub">
+      DOSMotionEdit merges timeline-synchronized audio synthesis, curated physics easings, and interactive 60 FPS motion rendering into a single suite — right on your browser and inside your terminal.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#studio" class="btn-main">Open Interactive Studio ↓</a>
+      <a href="https://github.com/Dikshu143644/DOSMotionEdit" target="_blank" class="btn-ghost">View Source Code</a>
     </div>
   </header>
 
-  <!-- Main area -->
-  <div class="workspace">
-    <!-- Left: Effects and Scenes -->
-    <aside class="sidebar">
-      <div class="sidebar-tabs">
-        <div class="sidebar-tab active">Motion Themes</div>
-      </div>
-      <div class="sidebar-content">
-        <div class="section-title">Scenes & Motion Layers</div>
-        
-        <div class="preset-card active" data-theme="wave">
-          <div class="preset-title">01 · Frequency Waveform</div>
-          <div class="preset-desc">Reactive harmonic spectrum bars responding to real-time audio frequencies with coral accents.</div>
+  <!-- LIVE APP WORKSPACE SECTION -->
+  <section class="app-section" id="studio">
+    <div class="studio-frame">
+      <!-- Window Bar -->
+      <div class="studio-topbar">
+        <div class="window-dots">
+          <div class="w-dot red"></div>
+          <div class="w-dot yellow"></div>
+          <div class="w-dot green"></div>
         </div>
-
-        <div class="preset-card" data-theme="pulse">
-          <div class="preset-title">02 · Rhythm Matrix</div>
-          <div class="preset-desc">Staggered 7x7 geometry grid pulsing to the tempo with mathematical spring physics.</div>
-        </div>
-
-        <div class="preset-card" data-theme="rings">
-          <div class="preset-title">03 · Resonance Rings</div>
-          <div class="preset-desc">Concentric acoustic rings breathing in logarithmic steps with radial fade.</div>
-        </div>
-
-        <div class="preset-card" data-theme="particles">
-          <div class="preset-title">04 · Stardust Ambient</div>
-          <div class="preset-desc">Floating particle physics field responding to mid and high dynamic sweeps.</div>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Center Stage -->
-    <main class="stage">
-      <div class="stage-hud">
-        <span id="hudFps">60 FPS</span>
-        <span id="hudState">READY</span>
-      </div>
-      <div class="canvas-container">
-        <canvas id="renderCanvas" width="1080" height="1080"></canvas>
-      </div>
-    </main>
-
-    <!-- Right: Property Inspector -->
-    <aside class="inspector">
-      <div class="prop-group">
-        <div class="section-title">Typography & Copy</div>
-        <div class="prop-row">
-          <span>Main Headline</span>
-          <input type="text" id="propText1" value="Sound in Motion.">
-        </div>
-        <div class="prop-row">
-          <span>Subtitle</span>
-          <input type="text" id="propText2" value="DOSMOTIONEDIT · WEB ENGINE">
+        <div class="studio-title">DOSMotionEdit v1.0.0 · 1080×1080 · 60 FPS Canvas Preview</div>
+        <div>
+          <label style="background:var(--panel); border:1px solid var(--panel-border); color:var(--cream); padding:4px 10px; border-radius:6px; font-size:11px; cursor:pointer;">
+            Upload Track
+            <input type="file" id="audioInput" accept="audio/*" style="display:none;">
+          </label>
         </div>
       </div>
 
-      <div class="prop-group">
-        <div class="section-title">Motion Easing & Springs</div>
-        <div class="prop-row">
-          <span>Spring Stiffness</span>
-          <input type="range" id="propStiffness" min="50" max="300" value="180">
-        </div>
-        <div class="prop-row">
-          <span>Motion Blur / Glow</span>
-          <input type="range" id="propGlow" min="0" max="100" value="45">
-        </div>
-        <div class="prop-row">
-          <span>Visualizer Density</span>
-          <input type="range" id="propBars" min="20" max="100" value="48">
-        </div>
+      <!-- Studio Workspace -->
+      <div class="studio-workspace">
+        <!-- Sidebar -->
+        <aside class="studio-sidebar">
+          <div class="sec-label">Motion Scenes</div>
+          
+          <div class="theme-card active" data-theme="wave">
+            <div class="theme-title">01 · Frequency Waveform</div>
+            <div class="theme-desc">Audio-reactive harmonic bars with signature coral tint and subtle blur.</div>
+          </div>
+
+          <div class="theme-card" data-theme="pulse">
+            <div class="theme-title">02 · Rhythm Matrix</div>
+            <div class="theme-desc">7×7 geometric dot matrix pulsing in sync with beat intervals.</div>
+          </div>
+
+          <div class="theme-card" data-theme="rings">
+            <div class="theme-title">03 · Resonance Rings</div>
+            <div class="theme-desc">Concentric acoustic waveforms expanding through smoothstep curves.</div>
+          </div>
+
+          <div class="theme-card" data-theme="particles">
+            <div class="theme-title">04 · Stardust Ambient</div>
+            <div class="theme-desc">Drifting stardust field reacting to audio harmonics.</div>
+          </div>
+        </aside>
+
+        <!-- Center Stage -->
+        <main class="studio-stage">
+          <div class="stage-canvas-box">
+            <canvas id="renderCanvas" width="1080" height="1080"></canvas>
+          </div>
+        </main>
+
+        <!-- Right Inspector -->
+        <aside class="studio-inspector">
+          <div class="sec-label">Typography & Style</div>
+
+          <div class="field-row">
+            <span class="field-label">Headline</span>
+            <input type="text" id="propText1" value="Sound in Motion.">
+          </div>
+
+          <div class="field-row">
+            <span class="field-label">Subtitle</span>
+            <input type="text" id="propText2" value="DOSMOTIONEDIT · WEB ENGINE">
+          </div>
+
+          <div class="field-row">
+            <span class="field-label">Accent Theme</span>
+            <select id="propPalette">
+              <option value="#D97757">Coral (Signature)</option>
+              <option value="#EE9B79">Peach</option>
+              <option value="#7AE4B8">Emerald Wave</option>
+              <option value="#C4A1F5">Violet Glow</option>
+            </select>
+          </div>
+
+          <div class="sec-label" style="margin-top:8px;">Physics & Texture</div>
+
+          <div class="field-row">
+            <span class="field-label">Motion Density</span>
+            <input type="range" id="propBars" min="20" max="96" value="48">
+          </div>
+
+          <div class="field-row">
+            <span class="field-label">Glow Amplitude</span>
+            <input type="range" id="propGlow" min="0" max="100" value="50">
+          </div>
+
+          <div class="field-row">
+            <span class="field-label">Film Grain</span>
+            <input type="range" id="propGrain" min="0" max="25" value="10">
+          </div>
+
+          <button id="exportBtn" style="margin-top:10px; background:var(--coral); color:white; border:none; padding:8px; border-radius:6px; font-weight:600; font-size:12px; cursor:pointer;">
+            Export Frame PNG
+          </button>
+        </aside>
       </div>
 
-      <div class="prop-group">
-        <div class="section-title">Color Palette</div>
-        <div class="prop-row">
-          <span>Accent Color</span>
-          <select id="propPalette">
-            <option value="#D97757">Coral (Signature)</option>
-            <option value="#EE9B79">Peach</option>
-            <option value="#7AE4B8">Emerald Wave</option>
-            <option value="#C4A1F5">Violet Glow</option>
-          </select>
-        </div>
-        <div class="prop-row">
-          <span>Film Grain</span>
-          <input type="range" id="propGrain" min="0" max="30" value="12">
-        </div>
-      </div>
-    </aside>
-  </div>
-
-  <!-- Bottom: Timeline Editor -->
-  <section class="timeline-panel">
-    <div class="timeline-toolbar">
-      <div class="play-controls">
-        <button class="play-btn" id="playBtn">▶</button>
-        <button class="action-btn" id="stopBtn">⏹</button>
-        <div class="timecode" id="timecodeDisplay">00:00:00 / 04:40:00</div>
-      </div>
-      <div style="font-size:11px; color:var(--muted); font-family:'JetBrains Mono';">
-        CLICK TIMELINE TO SCRUB
-      </div>
-    </div>
-
-    <div class="timeline-workspace" id="timelineTrackArea">
-      <div class="track-labels">
-        <div class="track-label">V1 · VIDEO</div>
-        <div class="track-label">A1 · AUDIO</div>
-        <div class="track-label">FX · GRAIN</div>
-      </div>
-
-      <div class="track-lanes" id="lanesContainer">
-        <div class="playhead" id="playhead" style="left: 0px;">
-          <div class="playhead-head"></div>
+      <!-- Bottom Timeline Panel -->
+      <div class="studio-timeline">
+        <div class="tl-header">
+          <div class="tl-controls">
+            <button class="play-circle" id="playBtn">▶</button>
+            <button style="background:var(--panel); border:1px solid var(--panel-border); color:var(--cream); padding:4px 8px; border-radius:4px; cursor:pointer; font-size:11px;" id="stopBtn">⏹</button>
+            <span class="tl-time" id="timecodeDisplay">00:00:00 / 04:40:00</span>
+          </div>
+          <div style="font-family:'JetBrains Mono'; font-size:11px; color:var(--muted);">
+            CLICK OR DRAG TIMELINE TO SCRUB
+          </div>
         </div>
 
-        <div class="track-lane">
-          <div class="clip clip-video" style="left: 0px; width: 340px;">01 · Waveform Visualizer</div>
-          <div class="clip clip-video" style="left: 360px; width: 420px;">02 · Rhythm Grid</div>
-          <div class="clip clip-video" style="left: 800px; width: 380px;">03 · Resonance Rings</div>
-          <div class="clip clip-video" style="left: 1200px; width: 380px;">04 · Stardust Ambient</div>
-        </div>
+        <div class="tl-body" id="timelineTrackArea">
+          <div class="tl-headers">
+            <div class="tl-head-row">V1 · VIDEO</div>
+            <div class="tl-head-row">A1 · AUDIO</div>
+            <div class="tl-head-row">FX · GRAIN</div>
+          </div>
 
-        <div class="track-lane">
-          <div class="clip clip-audio" id="audioClipLabel" style="left: 0px; width: 1580px;">🎵 music.mp3 (4:40 · Stereo Master)</div>
-        </div>
+          <div class="tl-lanes" id="lanesContainer">
+            <div class="tl-playhead" id="playhead" style="left:0px;">
+              <div class="tl-playhead-cap"></div>
+            </div>
 
-        <div class="track-lane">
-          <div class="clip clip-fx" style="left: 0px; width: 1580px;">✨ 60FPS Film Grain & Vignette</div>
+            <div class="tl-lane-row">
+              <div class="tl-clip clip-v" style="left:0px; width:340px;">01 · Waveform Visualizer</div>
+              <div class="tl-clip clip-v" style="left:350px; width:420px;">02 · Rhythm Matrix</div>
+              <div class="tl-clip clip-v" style="left:780px; width:360px;">03 · Resonance Rings</div>
+              <div class="tl-clip clip-v" style="left:1150px; width:380px;">04 · Stardust Ambient</div>
+            </div>
+
+            <div class="tl-lane-row">
+              <div class="tl-clip clip-a" id="audioClipLabel" style="left:0px; width:1540px;">🎵 music.mp3 (4:40 · Remotion Audio Master)</div>
+            </div>
+
+            <div class="tl-lane-row">
+              <div class="tl-clip clip-f" style="left:0px; width:1540px;">✨ 60 FPS Procedural Film Grain</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Interactive Editor Engine -->
+  <!-- ABOUT THE SOFTWARE SECTION -->
+  <section class="about-section" id="about">
+    <div class="about-head">
+      <h2>Engineered for Taste, Not Just Code</h2>
+      <p>DOSMotionEdit breaks away from traditional bloated video editors. It brings the precision of code, Remotion's programmatic determinism, and procedural audio synthesis into a unified workflow.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">📐</div>
+        <h3>Taste-Driven Motion Easing</h3>
+        <p>Built with hardcoded mathematical bezier curves (<code>easeOut</code>, <code>easeIn</code>, <code>easeInOut</code>) and damped spring physics, avoiding generic linear transitions that feel robotic.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">🔊</div>
+        <h3>Procedural SFX & Music Sync</h3>
+        <p>Integrates a pure Python stdlib audio synthesis engine. Generates risers, chimes, pops, and impacts dynamically mastered to the international -14 LUFS broadcast standard.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">🎞️</div>
+        <h3>Self-Review Loop</h3>
+        <p>Includes built-in contact sheet generators. Every timeline beat is rendered into high-resolution visual contact sheets so you inspect every transition before shipping.</p>
+      </div>
+    </div>
+
+    <!-- Architecture & CLI section -->
+    <div class="arch-box" id="architecture">
+      <h3>Run It Locally via Terminal</h3>
+      <p style="color:var(--cream-dim); margin-bottom:20px; font-size:15px;">Experience the same engine running directly inside Remotion Studio with live hot reloading:</p>
+      <div class="arch-code">
+# 1. Clone your repository
+git clone https://github.com/Dikshu143644/DOSMotionEdit.git
+cd DOSMotionEdit
+
+# 2. Install motion packages & Remotion
+npm install
+
+# 3. Launch live Remotion Studio UI (localhost)
+npm run studio
+
+# 4. Render full 4-minute 40-second composition to MP4
+npx remotion render MusicVideo out/music-video.mp4</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-brand">DOSMotion<span>Edit</span></div>
+    <p class="footer-desc">Crafted with Remotion, TypeScript, and Motion-Design Taste Rules.</p>
+    <div class="footer-links">
+      <a href="https://github.com/Dikshu143644/DOSMotionEdit" target="_blank">GitHub Repository</a>
+      <a href="#studio">Web Editor</a>
+      <a href="#about">About Software</a>
+    </div>
+    <div class="footer-copy">
+      © 2026 DOSMotionEdit · Maintained by @Dikshu143644 · Open Source
+    </div>
+  </footer>
+
+  <!-- Interactive Studio Script -->
   <script>
     const canvas = document.getElementById('renderCanvas');
     const ctx = canvas.getContext('2d');
@@ -529,18 +800,18 @@
     let isPlaying = false;
     let currentTime = 0;
     const duration = 280; // 4 minutes 40 seconds
-    const timelineWidth = 1600;
+    const timelineWidth = 1400;
     let activeTheme = 'wave';
-    let audioContext = null;
     let audioElement = new Audio();
     audioElement.src = 'public/music.mp3';
 
     // Theme selector
-    document.querySelectorAll('.preset-card').forEach(card => {
+    document.querySelectorAll('.theme-card').forEach(card => {
       card.addEventListener('click', () => {
-        document.querySelectorAll('.preset-card').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
         card.classList.add('active');
         activeTheme = card.dataset.theme;
+        drawFrame();
       });
     });
 
@@ -549,11 +820,11 @@
       const file = e.target.files[0];
       if (file) {
         audioElement.src = URL.createObjectURL(file);
-        audioClipLabel.textContent = `🎵 ${file.name} (Custom Audio)`;
+        audioClipLabel.textContent = `🎵 ${file.name} (Custom Track)`;
       }
     });
 
-    // Playback controls
+    // Playback
     playBtn.addEventListener('click', togglePlay);
     stopBtn.addEventListener('click', stopPlay);
 
@@ -568,7 +839,6 @@
     function startPlay() {
       isPlaying = true;
       playBtn.textContent = '⏸';
-      document.getElementById('hudState').textContent = 'PLAYING';
       audioElement.currentTime = currentTime;
       audioElement.play().catch(() => {});
       requestAnimationFrame(loop);
@@ -577,7 +847,6 @@
     function pausePlay() {
       isPlaying = false;
       playBtn.textContent = '▶';
-      document.getElementById('hudState').textContent = 'PAUSED';
       audioElement.pause();
     }
 
@@ -586,15 +855,17 @@
       currentTime = 0;
       audioElement.currentTime = 0;
       updatePlayhead();
+      drawFrame();
     }
 
-    // Timeline Scrubbing
+    // Scrubbing
     lanesContainer.addEventListener('click', (e) => {
       const rect = lanesContainer.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
       currentTime = Math.max(0, Math.min(duration, (clickX / timelineWidth) * duration));
       audioElement.currentTime = currentTime;
       updatePlayhead();
+      drawFrame();
     });
 
     function updatePlayhead() {
@@ -609,25 +880,19 @@
         `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}:${String(frames).padStart(2,'0')} / 04:40:00`;
     }
 
-    // Render Canvas Loop (60 FPS Motion Graphics Engine)
+    // Canvas Rendering Loop
     let lastTime = performance.now();
 
     function loop(now) {
       if (isPlaying) {
         const dt = (now - lastTime) / 1000;
         currentTime += dt;
-        if (currentTime >= duration) {
-          currentTime = 0;
-        }
+        if (currentTime >= duration) currentTime = 0;
         updatePlayhead();
       }
       lastTime = now;
-
       drawFrame();
-
-      if (isPlaying) {
-        requestAnimationFrame(loop);
-      }
+      if (isPlaying) requestAnimationFrame(loop);
     }
 
     function drawFrame() {
@@ -636,7 +901,7 @@
       const t = currentTime;
       const accent = propPalette.value;
 
-      // Dark elegant background
+      // Dark background
       ctx.fillStyle = '#141413';
       ctx.fillRect(0, 0, w, h);
 
@@ -648,21 +913,16 @@
       ctx.fillStyle = radGlow;
       ctx.fillRect(0, 0, w, h);
 
-      // Active Motion Theme
-      if (activeTheme === 'wave') {
-        drawWaveformTheme(t, accent);
-      } else if (activeTheme === 'pulse') {
-        drawPulseTheme(t, accent);
-      } else if (activeTheme === 'rings') {
-        drawRingsTheme(t, accent);
-      } else if (activeTheme === 'particles') {
-        drawParticlesTheme(t, accent);
-      }
+      // Draw Selected Scene
+      if (activeTheme === 'wave') drawWaveformTheme(t, accent);
+      else if (activeTheme === 'pulse') drawPulseTheme(t, accent);
+      else if (activeTheme === 'rings') drawRingsTheme(t, accent);
+      else if (activeTheme === 'particles') drawParticlesTheme(t, accent);
 
-      // Dynamic Animated Typography
+      // Animated Typography
       drawTypography(t, accent);
 
-      // Grain Overlay
+      // Grain
       drawGrain();
     }
 
@@ -733,13 +993,10 @@
 
     function drawTypography(t, accent) {
       ctx.textAlign = 'center';
-
-      // Title
       ctx.font = 'italic 76px "Instrument Serif", Georgia';
       ctx.fillStyle = '#f0eee6';
       ctx.fillText(propText1.value, canvas.width / 2, canvas.height / 2 - 12);
 
-      // Subtitle
       ctx.font = '500 14px "JetBrains Mono", monospace';
       ctx.fillStyle = 'rgba(240, 238, 230, 0.5)';
       ctx.letterSpacing = '0.2em';
@@ -770,7 +1027,7 @@
       ctx.lineTo(x + radius, y + height);
       ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
       ctx.lineTo(x, y + radius);
-      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.quadraticCurveTo(x, y + x + radius, y);
       ctx.closePath();
     }
 
@@ -781,7 +1038,6 @@
       return `rgba(${(num >> 16) & 255}, ${(num >> 8) & 255}, ${num & 255}, ${alpha})`;
     }
 
-    // Export current frame as PNG
     exportBtn.addEventListener('click', () => {
       const link = document.createElement('a');
       link.download = `DOSMotionEdit-${Math.round(currentTime)}s.png`;
@@ -789,7 +1045,6 @@
       link.click();
     });
 
-    // Initial render
     drawFrame();
   </script>
 </body>
