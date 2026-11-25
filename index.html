@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOSMotionEdit | Motion Graphics & Video Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #141413;
+      --panel: #1f1e1c;
+      --panel-hi: #282724;
+      --cream: #f0eee6;
+      --cream-dim: rgba(240, 238, 230, 0.64);
+      --muted: rgba(240, 238, 230, 0.38);
+      --coral: #d97757;
+      --coral-hi: #ee9b79;
+      --border: rgba(240, 238, 230, 0.1);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--cream);
+      font-family: 'Inter', -apple-system, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    header {
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(20, 20, 19, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 32px;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .logo span {
+      color: var(--coral);
+      font-style: italic;
+    }
+    nav a {
+      color: var(--cream-dim);
+      text-decoration: none;
+      margin-left: 28px;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: var(--cream);
+    }
+    .cta-btn {
+      background: var(--coral);
+      color: #fff !important;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .cta-btn:hover {
+      background: var(--coral-hi);
+      transform: translateY(-1px);
+    }
+    .hero {
+      max-width: 1100px;
+      margin: 80px auto 60px;
+      padding: 0 32px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--coral);
+      background: rgba(217, 119, 87, 0.12);
+      border: 1px solid rgba(217, 119, 87, 0.3);
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(56px, 8vw, 102px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+    h1 em {
+      color: var(--coral);
+      font-style: italic;
+    }
+    .hero-p {
+      font-size: clamp(18px, 2.5vw, 22px);
+      color: var(--cream-dim);
+      max-width: 720px;
+      margin: 0 auto 40px;
+      font-weight: 400;
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--coral);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--coral-hi);
+    }
+    .btn-secondary {
+      background: var(--panel);
+      color: var(--cream);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: var(--panel-hi);
+      border-color: rgba(240, 238, 230, 0.2);
+    }
+    .preview-box {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 32px;
+    }
+    .card-terminal {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      text-align: left;
+    }
+    .terminal-dots {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(240, 238, 230, 0.2);
+    }
+    .dot.red { background: #ff5f56; }
+    .dot.yellow { background: #ffbd2e; }
+    .dot.green { background: #27c93f; }
+    pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--cream-dim);
+      overflow-x: auto;
+      line-height: 1.6;
+    }
+    .features {
+      max-width: 1100px;
+      margin: 100px auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .feature-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 32px;
+      border-radius: 12px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--coral);
+    }
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      color: var(--coral);
+    }
+    .feature-card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .feature-card p {
+      color: var(--cream-dim);
+      font-size: 15px;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 32px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    footer a {
+      color: var(--cream);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="logo">
+      DOSMotion<span>Edit</span>
+    </a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#setup">Quickstart</a>
+      <a href="https://github.com/Dikshu143644/DOSMotionEdit" target="_blank" class="cta-btn">GitHub Repo</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="badge">Remotion + Procedural SFX + 60 FPS</div>
+      <h1>Taste-driven video creation for <em>coders</em>.</h1>
+      <p class="hero-p">
+        DOSMotionEdit brings motion-design taste rules, timeline-synchronized procedural audio synthesis, and visual review loops right into your code.
+      </p>
+      <div class="hero-actions">
+        <a href="#setup" class="btn btn-primary">Get Started</a>
+        <a href="https://github.com/Dikshu143644/DOSMotionEdit" target="_blank" class="btn btn-secondary">View on GitHub</a>
+      </div>
+    </section>
+
+    <section class="preview-box" id="setup">
+      <div class="card-terminal">
+        <div class="terminal-dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <pre><code># 1. Clone repository
+git clone https://github.com/Dikshu143644/DOSMotionEdit.git
+cd DOSMotionEdit
+
+# 2. Install dependencies
+npm install
+
+# 3. Launch live Remotion Studio editor
+npm run studio
+
+# 4. Render full composition
+npx remotion render MusicVideo out/music-video.mp4</code></pre>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3>Motion Design Taste Rules</h3>
+        <p>Curated bezier easings (easeOut, easeIn), spring presets, typography scale tokens, and strict scene continuity.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🎵</div>
+        <h3>Procedural SFX & Music Sync</h3>
+        <p>Pure Python stdlib synthesizer engine mastering audio to -14 LUFS, plus native MP3 Remotion audio sync.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3>Visual Review Loop</h3>
+        <p>Automated contact-sheet timeline inspection. Check every beat and transition before shipping final renders.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>DOSMotionEdit · Maintained by <a href="https://github.com/Dikshu143644" target="_blank">@Dikshu143644</a> · Built with Remotion & Motion Design Skills</p>
+  </footer>
+
+</body>
+</html>
