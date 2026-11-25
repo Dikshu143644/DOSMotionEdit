@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DOSMotionEdit | Remotion Studio & Motion Design Suite</title>
+  <title>DOSMotionEdit | Remotion Studio & Motion Suite</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
       line-height: 1.5;
     }
 
-    /* ─── SITE NAVIGATION BAR ─── */
+    /* Top Site Nav */
     nav.site-nav {
       height: 60px;
       padding: 0 32px;
@@ -62,11 +62,7 @@
     }
     .brand-logo span { color: var(--coral); font-style: italic; }
     .brand-logo svg { fill: var(--blue-accent); }
-    .nav-menu {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
+    .nav-menu { display: flex; gap: 24px; align-items: center; }
     .nav-menu a {
       color: var(--text-dim);
       text-decoration: none;
@@ -85,10 +81,10 @@
     }
     .cta-gh:hover { background: #388bfd; }
 
-    /* ─── HERO SECTION ─── */
+    /* Hero */
     .hero-container {
       position: relative;
-      padding: 90px 24px 60px;
+      padding: 80px 24px 50px;
       max-width: 1200px;
       margin: 0 auto;
       text-align: center;
@@ -129,21 +125,18 @@
     }
     .hero-container h1 {
       font-family: 'Instrument Serif', Georgia, serif;
-      font-size: clamp(52px, 7.5vw, 92px);
+      font-size: clamp(50px, 7vw, 88px);
       line-height: 1.05;
       letter-spacing: -0.025em;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       position: relative;
     }
-    .hero-container h1 em {
-      color: var(--coral);
-      font-style: italic;
-    }
+    .hero-container h1 em { color: var(--coral); font-style: italic; }
     .hero-p {
-      font-size: clamp(17px, 2vw, 20px);
+      font-size: clamp(16px, 2vw, 19px);
       color: var(--text-dim);
-      max-width: 780px;
-      margin: 0 auto 36px;
+      max-width: 760px;
+      margin: 0 auto 32px;
       position: relative;
     }
     .hero-btns {
@@ -151,7 +144,7 @@
       justify-content: center;
       gap: 16px;
       position: relative;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
     .btn-primary {
       background: var(--blue-selection);
@@ -178,7 +171,7 @@
     }
     .btn-outline:hover { background: #21262d; border-color: rgba(255,255,255,0.2); }
 
-    /* ─── LIVE EMBEDDED REMOTION STUDIO APP ─── */
+    /* Studio UI Container */
     .studio-wrapper {
       max-width: 1360px;
       margin: 0 auto 100px;
@@ -190,12 +183,13 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.05);
-      height: 720px;
+      height: 740px;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
-    /* Top Studio Bar */
+    /* Top Menu Bar */
     .top-menu-bar {
       height: 38px;
       background: var(--bg-header);
@@ -206,12 +200,9 @@
       padding: 0 12px;
       flex-shrink: 0;
       user-select: none;
+      position: relative;
     }
-    .menu-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
+    .menu-left { display: flex; align-items: center; gap: 16px; }
     .remotion-logo {
       display: flex;
       align-items: center;
@@ -221,16 +212,44 @@
       color: #fff;
     }
     .remotion-logo svg { fill: var(--blue-accent); }
-    .menu-items {
-      display: flex;
-      gap: 12px;
-    }
+    .menu-items { display: flex; gap: 8px; position: relative; }
     .menu-item {
       color: var(--text-dim);
       font-size: 12px;
       cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 4px;
+      position: relative;
     }
-    .menu-item:hover { color: var(--text-main); }
+    .menu-item:hover, .menu-item.active { color: var(--text-main); background: rgba(255,255,255,0.06); }
+
+    /* Dropdown Menus */
+    .dropdown-menu {
+      position: absolute;
+      top: 36px;
+      left: 0;
+      background: #1c2128;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      min-width: 180px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+      padding: 4px 0;
+    }
+    .dropdown-menu.show { display: flex; }
+    .dropdown-item {
+      padding: 7px 14px;
+      font-size: 12px;
+      color: var(--text-dim);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+    }
+    .dropdown-item:hover { background: var(--blue-selection); color: #fff; }
+    .dropdown-divider { height: 1px; background: var(--border); margin: 4px 0; }
+
     .menu-center {
       display: flex;
       align-items: center;
@@ -243,11 +262,7 @@
       border: 1px solid var(--border);
     }
     .menu-center span { color: var(--text-main); font-weight: 500; }
-    .menu-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .menu-right { display: flex; align-items: center; gap: 10px; }
     .icon-btn {
       background: transparent;
       border: none;
@@ -276,7 +291,7 @@
     }
     .render-btn:hover { background: #388bfd; }
 
-    /* Studio Workspace */
+    /* Workspace */
     .workspace {
       flex: 1;
       display: grid;
@@ -298,23 +313,22 @@
       background: #11151e;
     }
     .tab-btn {
-      padding: 9px 14px;
-      font-size: 12px;
+      padding: 9px 12px;
+      font-size: 11.5px;
       font-weight: 500;
       color: var(--text-dim);
       cursor: pointer;
       border: none;
       background: transparent;
+      flex: 1;
+      text-align: center;
     }
     .tab-btn.active {
       color: var(--text-main);
       border-bottom: 2px solid var(--blue-accent);
       font-weight: 600;
     }
-    .search-box {
-      padding: 8px 10px;
-      border-bottom: 1px solid var(--border);
-    }
+    .search-box { padding: 8px 10px; border-bottom: 1px solid var(--border); }
     .search-input {
       width: 100%;
       background: #0d1117;
@@ -332,7 +346,7 @@
       display: none;
     }
     .tab-content.active { display: block; }
-    .comp-item, .asset-item {
+    .comp-item, .asset-item, .fx-item {
       display: flex;
       align-items: center;
       gap: 8px;
@@ -340,16 +354,20 @@
       font-size: 12px;
       color: var(--text-dim);
       cursor: pointer;
+      transition: background 0.1s;
     }
-    .comp-item:hover, .asset-item:hover { background: rgba(255,255,255,0.04); color: var(--text-main); }
-    .comp-item.selected {
+    .comp-item:hover, .asset-item:hover, .fx-item:hover {
+      background: rgba(255,255,255,0.04);
+      color: var(--text-main);
+    }
+    .comp-item.selected, .fx-item.selected {
       background: rgba(56, 139, 253, 0.15);
       color: #fff;
       font-weight: 500;
     }
-    .comp-item svg, .asset-item svg { width: 15px; height: 15px; opacity: 0.8; }
+    .comp-item svg, .asset-item svg, .fx-item svg { width: 15px; height: 15px; opacity: 0.8; }
 
-    /* Center Canvas Viewport */
+    /* Center Viewport */
     .center-pane {
       background: #090c10;
       display: flex;
@@ -361,7 +379,7 @@
       padding: 16px;
     }
     .canvas-frame {
-      width: min(440px, 90%);
+      width: min(430px, 90%);
       aspect-ratio: 1 / 1;
       background: #141413;
       border: 1.5px solid var(--blue-accent);
@@ -370,11 +388,7 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.85);
       overflow: hidden;
     }
-    #studioCanvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
+    #studioCanvas { width: 100%; height: 100%; display: block; }
 
     /* Right Inspector */
     .right-pane {
@@ -430,10 +444,7 @@
       align-items: center;
       gap: 8px;
     }
-    .prop-name {
-      color: var(--text-dim);
-      font-size: 11.5px;
-    }
+    .prop-name { color: var(--text-dim); font-size: 11.5px; }
     .prop-val {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11.5px;
@@ -476,11 +487,7 @@
       font-size: 11.5px;
       color: var(--text-dim);
     }
-    .transport-center {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .transport-center { display: flex; align-items: center; gap: 12px; }
     .ctrl-btn {
       background: transparent;
       border: none;
@@ -583,11 +590,14 @@
       font-size: 11px;
       font-weight: 500;
       color: rgba(255,255,255,0.9);
-      cursor: grab;
+      cursor: pointer;
       border: 1px solid rgba(255,255,255,0.15);
       white-space: nowrap;
       overflow: hidden;
+      transition: filter 0.15s;
     }
+    .clip:hover { filter: brightness(1.2); }
+    .clip.selected { border-color: #fff; box-shadow: 0 0 8px rgba(255,255,255,0.4); }
     .clip.audio-clip {
       background: #195e2b;
       border-color: #2ea043;
@@ -626,43 +636,32 @@
       transform: rotate(45deg);
     }
 
-    /* ─── ABOUT SECTION ─── */
-    .about-wrap {
-      max-width: 1100px;
-      margin: 0 auto 100px;
-      padding: 0 24px;
+    /* Modal dialog */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
     }
-    .about-head { text-align: center; margin-bottom: 48px; }
-    .about-head h2 {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 42px;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    .about-head p { color: var(--text-dim); font-size: 16px; max-width: 680px; margin: 0 auto; }
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-    }
-    .info-card {
-      background: var(--bg-header);
+    .modal-overlay.show { display: flex; }
+    .modal-box {
+      background: #1c2128;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 28px;
+      border-radius: 8px;
+      padding: 24px;
+      max-width: 440px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
     }
-    .info-card h3 { font-size: 18px; margin-bottom: 8px; color: #fff; }
-    .info-card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.6; }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 13px;
-    }
-    footer a { color: var(--text-main); text-decoration: none; }
+    .modal-box h3 { margin-bottom: 12px; font-size: 18px; color: #fff; }
+    .modal-box p { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; line-height: 1.5; }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
   </style>
 </head>
 <body>
@@ -675,7 +674,7 @@
     </a>
     <div class="nav-menu">
       <a href="#studio">Remotion Studio</a>
-      <a href="#about">About</a>
+      <a href="#about">About Suite</a>
       <a href="https://github.com/Dikshu143644/DOSMotionEdit" target="_blank" class="cta-gh">GitHub Repo</a>
     </div>
   </nav>
@@ -685,7 +684,7 @@
     <div class="hero-glow"></div>
     <div class="hero-badge">
       <span class="pulse"></span>
-      Remotion Studio & Web Engine Live
+      Remotion Studio & Web Suite Live
     </div>
     <h1>The code-driven motion studio for <em>creative minds</em>.</h1>
     <p class="hero-p">
@@ -708,10 +707,42 @@
             Remotion
           </div>
           <div class="menu-items">
-            <span class="menu-item" id="mFile">File</span>
-            <span class="menu-item" id="mView">View</span>
-            <span class="menu-item" id="mComp">Composition</span>
-            <span class="menu-item" id="mTools">Tools</span>
+            <!-- File Menu -->
+            <div class="menu-item" id="mFile">File
+              <div class="dropdown-menu" id="menuFileDropdown">
+                <div class="dropdown-item" id="optNewComp">New Composition <span>Ctrl+N</span></div>
+                <div class="dropdown-item" id="optOpenAudio">Open Audio File... <span>Ctrl+O</span></div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item" id="optExportPng">Export Current Frame PNG</div>
+              </div>
+            </div>
+
+            <!-- View Menu -->
+            <div class="menu-item" id="mView">View
+              <div class="dropdown-menu" id="menuViewDropdown">
+                <div class="dropdown-item" id="optResetZoom">Fit Canvas View</div>
+                <div class="dropdown-item" id="optTogglePlay">Toggle Play / Pause <span>Space</span></div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item" id="optFullscreen">Enter Fullscreen <span>F11</span></div>
+              </div>
+            </div>
+
+            <!-- Composition Menu -->
+            <div class="menu-item" id="mComp">Composition
+              <div class="dropdown-menu" id="menuCompDropdown">
+                <div class="dropdown-item" data-selectcomp="MusicVideo">Select MusicVideo</div>
+                <div class="dropdown-item" data-selectcomp="EffortVideo">Select EffortVideo</div>
+                <div class="dropdown-item" data-selectcomp="ArticleCover">Select ArticleCover</div>
+              </div>
+            </div>
+
+            <!-- Tools Menu -->
+            <div class="menu-item" id="mTools">Tools
+              <div class="dropdown-menu" id="menuToolsDropdown">
+                <div class="dropdown-item" id="optRenderCLI">Render Command (CLI)</div>
+                <div class="dropdown-item" id="optInspectAudio">Loudness Telemetry (-14 LUFS)</div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -734,11 +765,12 @@
 
       <!-- Main Triple Pane Workspace -->
       <div class="workspace">
-        <!-- Left Pane: Tabs for Compositions & Assets -->
+        <!-- Left Pane -->
         <aside class="left-pane">
           <div class="tabs-header">
             <button class="tab-btn active" id="tabCompsBtn">Compositions</button>
             <button class="tab-btn" id="tabAssetsBtn">Assets</button>
+            <button class="tab-btn" id="tabFxBtn">Effects</button>
           </div>
           <div class="search-box">
             <input type="text" id="searchInput" class="search-input" placeholder="Search... (Ctrl+K)">
@@ -762,17 +794,37 @@
 
           <!-- Assets Tab Content -->
           <div class="tab-content" id="tabAssetsContent">
-            <div class="asset-item">
+            <div class="asset-item" data-asset="music.mp3">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
               music.mp3 (4:40)
             </div>
-            <div class="asset-item">
+            <div class="asset-item" data-asset="preview.gif">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
               preview.gif
             </div>
-            <div class="asset-item">
+            <div class="asset-item" data-asset="timeline.json">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
               timeline.json
+            </div>
+          </div>
+
+          <!-- Effects Tab Content -->
+          <div class="tab-content" id="tabFxContent">
+            <div class="fx-item selected" data-effect="matrix">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              Rhythm Matrix (7x7)
+            </div>
+            <div class="fx-item" data-effect="waveform">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10v4"></path><path d="M6 4v16"></path><path d="M10 8v8"></path><path d="M14 2v20"></path><path d="M18 6v12"></path><path d="M22 10v4"></path></svg>
+              Audio Frequency Bars
+            </div>
+            <div class="fx-item" data-effect="rings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+              Resonance Acoustic Rings
+            </div>
+            <div class="fx-item" data-effect="particles">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="2"></circle><circle cx="18" cy="8" r="2"></circle><circle cx="14" cy="18" r="2"></circle><circle cx="6" cy="16" r="2"></circle></svg>
+              Stardust Floating Particles
             </div>
           </div>
         </aside>
@@ -792,7 +844,7 @@
           </div>
           <div class="inspector-content">
             <div>
-              <div class="elem-tag">&lt;AbsoluteFill&gt;</div>
+              <div class="elem-tag" id="activeElemTag">&lt;AbsoluteFill&gt;</div>
               <div class="sub-elem" id="elemSubLabel">{} MusicVideo.tsx:288</div>
             </div>
 
@@ -889,10 +941,10 @@
             </div>
 
             <div class="lane">
-              <div class="clip video-clip" style="left:0px; width:1600px;">3825 · GridMatrix &amp; Glow</div>
+              <div class="clip video-clip selected" data-trackname="GridMatrix & Glow" style="left:0px; width:1600px;">3825 · GridMatrix &amp; Glow</div>
             </div>
             <div class="lane">
-              <div class="clip audio-clip" style="left:0px; width:1600px;">
+              <div class="clip audio-clip" data-trackname="music.mp3 Track" style="left:0px; width:1600px;">
                 <svg class="waveform-svg" preserveAspectRatio="none" viewBox="0 0 100 20">
                   <path d="M0,10 Q5,0 10,10 T20,10 T30,2 T40,18 T50,8 T60,15 T70,3 T80,17 T90,9 T100,10" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
                 </svg>
@@ -900,13 +952,13 @@
               </div>
             </div>
             <div class="lane">
-              <div class="clip video-clip" style="left:0px; width:1600px;">3825 · &lt;Typography /&gt;</div>
+              <div class="clip video-clip" data-trackname="Typography Component" style="left:0px; width:1600px;">3825 · &lt;Typography /&gt;</div>
             </div>
             <div class="lane">
-              <div class="clip video-clip" style="left:0px; width:1600px;">3825 · &lt;ResonanceRings /&gt;</div>
+              <div class="clip video-clip" data-trackname="Resonance Rings" style="left:0px; width:1600px;">3825 · &lt;ResonanceRings /&gt;</div>
             </div>
             <div class="lane">
-              <div class="clip video-clip" style="left:0px; width:1600px;">3825 · &lt;GrainOverlay /&gt;</div>
+              <div class="clip video-clip" data-trackname="Film Grain FX" style="left:0px; width:1600px;">3825 · &lt;GrainOverlay /&gt;</div>
             </div>
           </div>
         </div>
@@ -914,34 +966,18 @@
     </div>
   </section>
 
-  <!-- About Section -->
-  <section class="about-wrap" id="about">
-    <div class="about-head">
-      <h2>Programmatic Video Engineering</h2>
-      <p>DOSMotionEdit bridges code and motion design. Build videos as React components with full frame accuracy.</p>
-    </div>
-    <div class="card-grid">
-      <div class="info-card">
-        <h3>⚡ Real-Time Web Studio</h3>
-        <p>Preview compositions with instant scrubbing, audio synchronization, and visual parameter adjustments directly in your browser.</p>
-      </div>
-      <div class="info-card">
-        <h3>📐 Mathematical Physics</h3>
-        <p>Damped springs and exact bezier curves create tactile motion without relying on linear keyframe animations.</p>
-      </div>
-      <div class="info-card">
-        <h3>🎵 Procedural Sound Sync</h3>
-        <p>Mastered audio playback synchronized down to the exact video frame for precise audiovisual harmony.</p>
+  <!-- Notification Modal -->
+  <div class="modal-overlay" id="appModal">
+    <div class="modal-box">
+      <h3 id="modalTitle">Remotion Studio Notice</h3>
+      <p id="modalMsg">Notice details here.</p>
+      <div class="modal-actions">
+        <button class="btn-primary" style="padding:8px 16px; font-size:13px;" id="modalCloseBtn">Got it</button>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2026 DOSMotionEdit · Maintained by <a href="https://github.com/Dikshu143644" target="_blank">@Dikshu143644</a> · Powered by Remotion</p>
-  </footer>
-
-  <!-- Fully Functioning Studio Script -->
+  <!-- Interactive Studio Script -->
   <script>
     const canvas = document.getElementById('studioCanvas');
     const ctx = canvas.getContext('2d');
@@ -968,37 +1004,187 @@
     // Tabs
     const tabCompsBtn = document.getElementById('tabCompsBtn');
     const tabAssetsBtn = document.getElementById('tabAssetsBtn');
+    const tabFxBtn = document.getElementById('tabFxBtn');
     const tabCompsContent = document.getElementById('tabCompsContent');
     const tabAssetsContent = document.getElementById('tabAssetsContent');
+    const tabFxContent = document.getElementById('tabFxContent');
     const activeCompLabel = document.getElementById('activeCompLabel');
+    const activeElemTag = document.getElementById('activeElemTag');
     const elemSubLabel = document.getElementById('elemSubLabel');
 
-    // Tab Switching logic
-    tabCompsBtn.addEventListener('click', () => {
-      tabCompsBtn.classList.add('active');
-      tabAssetsBtn.classList.remove('active');
-      tabCompsContent.classList.add('active');
-      tabAssetsContent.classList.remove('active');
+    // Menus
+    const mFile = document.getElementById('mFile');
+    const mView = document.getElementById('mView');
+    const mComp = document.getElementById('mComp');
+    const mTools = document.getElementById('mTools');
+    const menuFileDropdown = document.getElementById('menuFileDropdown');
+    const menuViewDropdown = document.getElementById('menuViewDropdown');
+    const menuCompDropdown = document.getElementById('menuCompDropdown');
+    const menuToolsDropdown = document.getElementById('menuToolsDropdown');
+
+    // Modals
+    const appModal = document.getElementById('appModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMsg = document.getElementById('modalMsg');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+    function showModal(title, msg) {
+      modalTitle.textContent = title;
+      modalMsg.textContent = msg;
+      appModal.classList.add('show');
+    }
+    modalCloseBtn.addEventListener('click', () => appModal.classList.remove('show'));
+
+    // Menu toggle helper
+    function closeAllMenus() {
+      document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.menu-item')) closeAllMenus();
     });
 
-    tabAssetsBtn.addEventListener('click', () => {
-      tabAssetsBtn.classList.add('active');
-      tabCompsBtn.classList.remove('active');
-      tabAssetsContent.classList.add('active');
-      tabCompsContent.classList.remove('active');
+    mFile.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isShown = menuFileDropdown.classList.contains('show');
+      closeAllMenus();
+      if (!isShown) menuFileDropdown.classList.add('show');
     });
 
-    // Composition Selection
+    mView.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isShown = menuViewDropdown.classList.contains('show');
+      closeAllMenus();
+      if (!isShown) menuViewDropdown.classList.add('show');
+    });
+
+    mComp.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isShown = menuCompDropdown.classList.contains('show');
+      closeAllMenus();
+      if (!isShown) menuCompDropdown.classList.add('show');
+    });
+
+    mTools.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isShown = menuToolsDropdown.classList.contains('show');
+      closeAllMenus();
+      if (!isShown) menuToolsDropdown.classList.add('show');
+    });
+
+    // Menu Item Actions
+    document.getElementById('optNewComp').addEventListener('click', () => {
+      closeAllMenus();
+      showModal('Create Composition', 'To scaffold a new composition locally in your code, add a new <Composition /> entry into src/Root.tsx.');
+    });
+
+    document.getElementById('optOpenAudio').addEventListener('click', () => {
+      closeAllMenus();
+      audioUpload.click();
+    });
+
+    document.getElementById('optExportPng').addEventListener('click', () => {
+      closeAllMenus();
+      exportFramePng();
+    });
+
+    document.getElementById('optResetZoom').addEventListener('click', () => {
+      closeAllMenus();
+      inpScale.value = 100;
+      valScale.textContent = '1.000';
+      inpRotation.value = 0;
+      valRotation.textContent = '0°';
+      drawFrame();
+    });
+
+    document.getElementById('optTogglePlay').addEventListener('click', () => {
+      closeAllMenus();
+      togglePlay();
+    });
+
+    document.getElementById('optFullscreen').addEventListener('click', () => {
+      closeAllMenus();
+      toggleFullScreen();
+    });
+
+    document.getElementById('optRenderCLI').addEventListener('click', () => {
+      closeAllMenus();
+      showModal('Render CLI Command', 'Run: npx remotion render MusicVideo out/music-video.mp4');
+    });
+
+    document.getElementById('optInspectAudio').addEventListener('click', () => {
+      closeAllMenus();
+      showModal('Audio Telemetry', 'BS.1770 Integrated Loudness: -14.0 LUFS (±1 LUFS target, true peak: -1.0 dBFS). Synchronized with timeline.json.');
+    });
+
+    // Composition selection via menu
+    document.querySelectorAll('[data-selectcomp]').forEach(item => {
+      item.addEventListener('click', () => {
+        const comp = item.dataset.selectcomp;
+        selectComposition(comp);
+        closeAllMenus();
+      });
+    });
+
+    // Tab Switching
+    function setTab(activeBtn, activeContent) {
+      [tabCompsBtn, tabAssetsBtn, tabFxBtn].forEach(b => b.classList.remove('active'));
+      [tabCompsContent, tabAssetsContent, tabFxContent].forEach(c => c.classList.remove('active'));
+      activeBtn.classList.add('active');
+      activeContent.classList.add('active');
+    }
+
+    tabCompsBtn.addEventListener('click', () => setTab(tabCompsBtn, tabCompsContent));
+    tabAssetsBtn.addEventListener('click', () => setTab(tabAssetsBtn, tabAssetsContent));
+    tabFxBtn.addEventListener('click', () => setTab(tabFxBtn, tabFxContent));
+
+    // Select Composition Helper
+    function selectComposition(compName) {
+      document.querySelectorAll('.comp-item').forEach(c => {
+        if (c.dataset.comp === compName) {
+          c.classList.add('selected');
+          inpText1.value = c.dataset.title;
+        } else {
+          c.classList.remove('selected');
+        }
+      });
+      activeCompLabel.textContent = compName;
+      elemSubLabel.textContent = `{} ${compName}.tsx:120`;
+      drawFrame();
+    }
+
     document.querySelectorAll('.comp-item').forEach(item => {
       item.addEventListener('click', () => {
-        document.querySelectorAll('.comp-item').forEach(c => c.classList.remove('selected'));
+        selectComposition(item.dataset.comp);
+      });
+    });
+
+    // Asset items click
+    document.querySelectorAll('.asset-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const asset = item.dataset.asset;
+        showModal('Asset Selected', `Asset: ${asset} is referenced in public/ and timeline.json`);
+      });
+    });
+
+    // Effects items click
+    let currentFx = 'matrix';
+    document.querySelectorAll('.fx-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.fx-item').forEach(f => f.classList.remove('selected'));
         item.classList.add('selected');
-        const comp = item.dataset.comp;
-        const title = item.dataset.title;
-        activeCompLabel.textContent = comp;
-        elemSubLabel.textContent = `{} ${comp}.tsx:120`;
-        inpText1.value = title;
+        currentFx = item.dataset.effect;
         drawFrame();
+      });
+    });
+
+    // Timeline Clip Selection
+    document.querySelectorAll('.clip').forEach(clip => {
+      clip.addEventListener('click', () => {
+        document.querySelectorAll('.clip').forEach(c => c.classList.remove('selected'));
+        clip.classList.add('selected');
+        const trackName = clip.dataset.trackname || 'Track Element';
+        activeElemTag.textContent = `<${trackName.split(' ')[0]}>`;
+        elemSubLabel.textContent = `Selected: ${trackName}`;
       });
     });
 
@@ -1011,7 +1197,6 @@
     let audioElement = new Audio();
     audioElement.src = 'public/music.mp3';
 
-    // Play / Pause
     btnPlay.addEventListener('click', togglePlay);
     function togglePlay() {
       if (isPlaying) {
@@ -1027,7 +1212,6 @@
       }
     }
 
-    // Skip controls
     btnPrev.addEventListener('click', () => {
       currentTime = Math.max(0, currentTime - 5);
       audioElement.currentTime = currentTime;
@@ -1041,23 +1225,22 @@
       drawFrame();
     });
 
-    // Mute toggle
     btnMute.addEventListener('click', () => {
       audioElement.muted = !audioElement.muted;
       btnMute.textContent = audioElement.muted ? '🔇' : '🔊';
     });
 
-    // Fullscreen toggle
-    fsBtn.addEventListener('click', () => {
+    function toggleFullScreen() {
       const frame = document.querySelector('.studio-frame');
       if (!document.fullscreenElement) {
         frame.requestFullscreen().catch(() => {});
       } else {
         document.exitFullscreen();
       }
-    });
+    }
+    fsBtn.addEventListener('click', toggleFullScreen);
 
-    // Scrubbing on Timeline
+    // Timeline Scrubbing
     let isDragging = false;
     lanesArea.addEventListener('mousedown', (e) => {
       isDragging = true;
@@ -1088,15 +1271,14 @@
       frameDisplay.textContent = `${Math.floor(currentTime * 60)}`;
     }
 
-    // Audio upload
     audioUpload.addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (file) {
         audioElement.src = URL.createObjectURL(file);
+        showModal('Audio Loaded', `Loaded track: ${file.name}`);
       }
     });
 
-    // Inspector dynamic inputs
     inpText1.addEventListener('input', drawFrame);
     selAccent.addEventListener('change', drawFrame);
     inpGrid.addEventListener('input', () => {
@@ -1155,26 +1337,53 @@
       ctx.rotate(rotation);
       ctx.translate(-w/2, -h/2);
 
-      // Matrix Dots
-      const cellW = w / gridCount;
-      const cellH = h / gridCount;
+      // Render Selected Effect
+      if (currentFx === 'matrix') {
+        const cellW = w / gridCount;
+        const cellH = h / gridCount;
+        for (let r = 0; r < gridCount; r++) {
+          for (let c = 0; c < gridCount; c++) {
+            const delay = (r + c) * 0.14;
+            const pulse = Math.abs(Math.sin((t - delay) * 2.2));
+            const isBig = (r + c) % 2 === 0;
+            const radius = (isBig ? 18 : 10) + pulse * 14;
 
-      for (let r = 0; r < gridCount; r++) {
-        for (let c = 0; c < gridCount; c++) {
-          const delay = (r + c) * 0.14;
-          const pulse = Math.abs(Math.sin((t - delay) * 2.2));
-          const isBig = (r + c) % 2 === 0;
-          const baseRadius = isBig ? 18 : 10;
-          const radius = baseRadius + pulse * 14;
-
+            ctx.beginPath();
+            ctx.arc(c * cellW + cellW/2, r * cellH + cellH/2, radius, 0, Math.PI * 2);
+            ctx.fillStyle = accent;
+            ctx.fill();
+          }
+        }
+      } else if (currentFx === 'waveform') {
+        const bars = 48;
+        const barW = w / bars;
+        for (let i = 0; i < bars; i++) {
+          const wave = Math.abs(Math.sin(t * 2 + (i / bars) * Math.PI * 4));
+          const bh = 30 + wave * (h * 0.4);
+          ctx.fillStyle = (i % 6 === 0) ? accent : 'rgba(240, 238, 230, 0.3)';
+          ctx.fillRect(i * barW + 2, h/2 - bh/2, barW - 4, bh);
+        }
+      } else if (currentFx === 'rings') {
+        [340, 260, 180, 100].forEach((r, idx) => {
+          const pulse = 0.85 + 0.15 * Math.sin(t * 1.8 + idx * 0.5);
           ctx.beginPath();
-          ctx.arc(c * cellW + cellW/2, r * cellH + cellH/2, radius, 0, Math.PI * 2);
-          ctx.fillStyle = accent;
+          ctx.arc(w/2, h/2, r * pulse, 0, Math.PI * 2);
+          ctx.strokeStyle = idx === 1 ? accent : 'rgba(240, 238, 230, 0.2)';
+          ctx.lineWidth = idx === 1 ? 3 : 1.5;
+          ctx.stroke();
+        });
+      } else if (currentFx === 'particles') {
+        for (let i = 0; i < 60; i++) {
+          const x = ((Math.sin(i * 77 + t * 0.3) + 1) / 2) * w;
+          const y = ((Math.cos(i * 33 + t * 0.2) + 1) / 2) * h;
+          ctx.beginPath();
+          ctx.arc(x, y, 3 + Math.abs(Math.sin(i + t)) * 4, 0, Math.PI * 2);
+          ctx.fillStyle = i % 5 === 0 ? accent : 'rgba(240, 238, 230, 0.4)';
           ctx.fill();
         }
       }
 
-      // Typography
+      // Center Typography
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.font = '76px "Instrument Serif", Georgia, serif';
@@ -1209,15 +1418,15 @@
       return `rgba(${(num >> 16) & 255}, ${(num >> 8) & 255}, ${num & 255}, ${alpha})`;
     }
 
-    // Export frame
-    renderExportBtn.addEventListener('click', () => {
+    function exportFramePng() {
       const link = document.createElement('a');
       link.download = `Remotion-Export-${Math.round(currentTime)}s.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
-    });
+    }
+    renderExportBtn.addEventListener('click', exportFramePng);
 
-    // Init
+    // Initial setup
     updatePlayheadUI();
     drawFrame();
   </script>
